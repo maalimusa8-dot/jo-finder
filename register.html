@@ -3,55 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب جديد</title>
+    <title>إنشاء حساب - Jo Finder</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', Arial, sans-serif; }
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .container { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
-        h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 24px; }
-        .form-group { margin-bottom: 20px; text-align: right; }
-        label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; font-size: 14px; }
-        input { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; direction: rtl; }
-        input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
-        button { width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        button:hover { background: #1d4ed8; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            margin: 0; 
+            background: #f5f5f5; 
+        }
+        nav { 
+            background: #2c3e50; 
+            padding: 15px 10px; 
+            text-align: center;
+        }
+        nav a { 
+            color: white; 
+            margin: 0 12px; 
+            text-decoration: none; 
+            font-weight: bold;
+            font-size: 16px;
+        }
+        nav a:hover { color: #27ae60; }
+        .container {
+            max-width: 400px; 
+            margin: 60px auto; 
+            padding: 0 20px;
+        }
+        .register-box {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover { background: #219150; }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="jobs2.html">الوظائف</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="login.html" id="loginLink">تسجيل الدخول</a>
+        <a href="#" id="logoutLink" onclick="logout()" style="display:none;">خروج</a>
+    </nav>
+    
     <div class="container">
-        <h1>إنشاء حساب جديد</h1>
-        <form id="registerForm">
-            <div class="form-group">
-                <label>الاسم</label>
-                <input type="text" id="name" placeholder="اكتب اسمك الكامل" required>
+        <div class="register-box">
+            <h1>إنشاء حساب جديد</h1>
+            <input type="text" id="newUsername" placeholder="اسم المستخدم">
+            <input type="email" id="newEmail" placeholder="البريد الإلكتروني">
+            <input type="password" id="newPassword" placeholder="كلمة المرور">
+            <input type="password" id="confirmPassword" placeholder="تأكيد كلمة المرور">
+            <button onclick="register()">إنشاء الحساب</button>
+            <p class="error" id="errorMsg"></p>
+            <div class="login-link">
+                عندك حساب؟ <a href="login.html">سجل دخول</a>
             </div>
-            
-            <div class="form-group">
-                <label>البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="example@email.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label>كلمة المرور</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
-            
-            <button type="submit">تسجيل</button>
-        </form>
+        </div>
     </div>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // يمنع الصفحة تعمل Refresh
-            
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-            
-            alert('أهلاً ' + name + ' 👋\nتم إنشاء الحساب بنجاح!');
-            
-            // بعد التسجيل وديه للصفحة الرئيسية
+        // كود تسجيل الدخول والخروج
+        if(localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('loginLink').style.display = 'none';
+            document.getElementById('logoutLink').style.display = 'inline-block';
+        }
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
             window.location.href = 'index.html';
-        });
+        }
+
+        // كود إنشاء الحساب
+        function register() {
+            const user = document.getElementById('newUsername').value;
+            const email = document.getElementById('newEmail').value;
+            const pass = document.getElementById('newPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if(!user || !email || !pass) {
+                errorMsg.innerText = 'املأ كل الحقول';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            if(pass !== confirmPass) {
+                errorMsg.innerText = 'كلمة المرور غير متطابقة';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            if(pass.length < 4) {
+                errorMsg.innerText = 'كلمة المرور لازم 4 حروف على الأقل';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            if(users.find(u => u.username === user)) {
+                errorMsg.innerText = 'اسم المستخدم موجود مسبقاً';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            users.push({username: user, email: email, password: pass});
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('username', user);
+            
+            alert('تم إنشاء الحساب بنجاح! ح تدخلي طوالي');
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
-</html>
+                </html>
