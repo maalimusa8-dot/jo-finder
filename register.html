@@ -5,125 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب جديد</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
-        
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s;
-            direction: rtl;
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-        }
-        
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        
-        button:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-        }
-        
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .login-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', Arial, sans-serif; }
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 24px; }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        label { display: block; margin-bottom: 8px; color: #555; font-weight: 600; font-size: 14px; }
+        input { width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; direction: rtl; }
+        input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+        button { width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #1d4ed8; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>إنشاء حساب جديد</h1>
-        <form>
+        <form id="registerForm">
             <div class="form-group">
                 <label>الاسم</label>
-                <input type="text" placeholder="اكتب اسمك الكامل" required>
+                <input type="text" id="name" placeholder="اكتب اسمك الكامل" required>
             </div>
             
             <div class="form-group">
                 <label>البريد الإلكتروني</label>
-                <input type="email" placeholder="example@email.com" required>
+                <input type="email" id="email" placeholder="example@email.com" required>
             </div>
             
             <div class="form-group">
                 <label>كلمة المرور</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" id="password" placeholder="••••••••" required>
             </div>
             
             <button type="submit">تسجيل</button>
         </form>
-        
-        <div class="login-link">
-            عندك حساب؟ <a href="login.html">سجل دخول</a>
-        </div>
     </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // يمنع الصفحة تعمل Refresh
+            
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            
+            alert('أهلاً ' + name + ' 👋\nتم إنشاء الحساب بنجاح!');
+            
+            // بعد التسجيل وديه للصفحة الرئيسية
+            window.location.href = 'index.html';
+        });
+    </script>
 </body>
-    </html>
+</html>
