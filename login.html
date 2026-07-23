@@ -52,7 +52,7 @@
         button {
             width: 100%;
             padding: 14px;
-            background: #2563eb;
+            background: #27ae60;
             color: white;
             border: none;
             border-radius: 6px;
@@ -61,7 +61,7 @@
             cursor: pointer;
             margin-top: 15px;
         }
-        button:hover { background: #1d4ed8; }
+        button:hover { background: #219150; }
         .error {
             color: red;
             text-align: center;
@@ -88,15 +88,15 @@
             <button onclick="login()">دخول</button>
             <p class="error" id="errorMsg">اسم المستخدم أو كلمة المرور غلط</p>
             
-            <!-- رابط إنشاء حساب جديد -->
+            <!-- دا السطر المهم اللي ما موجود عندك 👇 -->
             <div style="text-align:center; margin-top:20px;">
                 ما عندك حساب؟ <a href="register.html" style="color:#2563eb; font-weight:bold;">إنشاء حساب جديد</a>
             </div>
+            
         </div>
     </div>
 
     <script>
-        // كود تسجيل الدخول والخروج
         if(localStorage.getItem('loggedIn') === 'true') {
             document.getElementById('loginLink').style.display = 'none';
             document.getElementById('logoutLink').style.display = 'inline-block';
@@ -108,7 +108,6 @@
             window.location.href = 'index.html';
         }
 
-        // تسجيل الدخول - يدعم الحسابات الجديدة
         function login() {
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
@@ -120,7 +119,6 @@
                 return;
             }
 
-            // جيب المستخدمين المسجلين
             let users = JSON.parse(localStorage.getItem('users')) || [];
             const foundUser = users.find(u => u.username === user && u.password === pass);
             
