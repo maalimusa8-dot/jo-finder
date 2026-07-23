@@ -112,3 +112,13 @@ p {
 .container a {
     color: #2563eb;
     text-decoration: none;
+    .container a {
+    color: #2563eb;
+    text-decoration: none; 
+}  /* دي نهاية كودك القديم */
+
+/* تنسيق صفحة أضف وظيفة */  /* بداية الكود الجديد */
+.container form {
+    text-align: right;
+}
+... باقي الكود ...
