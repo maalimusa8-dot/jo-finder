@@ -3,83 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobFinder - الوظائف</title>
+    <title>الوظائف - Jo Finder</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', Arial, sans-serif; }
-        body { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px 0 30px 0;
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
         }
-        .navbar {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+        nav { 
+            background: #2c3e50; 
+            padding: 15px 10px; 
             text-align: center;
         }
-        .logo {
-            color: #2563eb;
-            font-size: 24px;
+        nav a { 
+            color: white; 
+            margin: 0 12px; 
+            text-decoration: none; 
             font-weight: bold;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .nav-links a {
-            color: #555;
-            text-decoration: none;
-            margin: 0 8px;
             font-size: 16px;
-            font-weight: 600;
+            display: inline-block;
         }
+        nav a:hover { color: #27ae60; }
         .container {
-            background: white;
-            padding: 25px 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 90%;
-            max-width: 500px;
-            margin: 0 auto;
+            max-width: 900px; 
+            margin: 30px auto; 
+            padding: 0 20px;
         }
-        h2 {
+        h1 {
             text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-        .search-box {
-            margin-bottom: 20px;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            direction: rtl;
+            color: #2c3e50;
+            margin-bottom: 30px;
         }
         .job-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: right;
         }
         .job-card h3 {
             color: #2563eb;
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 20px;
         }
         .job-card p {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: #555;
             font-size: 15px;
             line-height: 1.6;
         }
         .btn {
-            margin-top: 10px;
+            margin-top: 12px;
             padding: 12px 20px;
             background: #2563eb;
             color: white;
@@ -90,49 +67,125 @@
             width: 100%;
             font-size: 16px;
         }
-        .btn:active {
+        .btn:hover {
             background: #1d4ed8;
+        }
+        .btn:active {
+            background: #1e40af;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">JobFinder</a>
-        <div class="nav-links">
-            <a href="index.html">الرئيسية</a>
-            <a href="jobs2.html">الوظائف</a>
-        </div>
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="jobs2.html">الوظائف</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="login.html" id="loginLink">تسجيل الدخول</a>
+        <a href="#" id="logoutLink" onclick="logout()" style="display:none;">خروج</a>
     </nav>
 
     <div class="container">
-        <h2>الوظائف المتاحة</h2>
-        <div class="search-box">
-            <input type="text" placeholder="ابحث عن وظيفة...">
-        </div>
+        <h1>الوظائف المتاحة</h1>
         
+        <!-- وظيفة 1 -->
         <div class="job-card">
             <h3>مطور ويب Frontend</h3>
             <p><strong>الشركة:</strong> تك سوليوشنز</p>
             <p><strong>الموقع:</strong> الخرطوم - عن بعد</p>
             <p><strong>الراتب:</strong> 400,000 جنيه</p>
-            <button class="btn">قدم الآن</button>
+            <p><strong>الخبرة:</strong> سنتين في React أو Vue</p>
+            <button class="btn" onclick="openForm('مطور ويب Frontend', 'تك سوليوشنز')">قدم الآن</button>
         </div>
 
+        <!-- وظيفة 2 -->
         <div class="job-card">
             <h3>مصمم جرافيك</h3>
-            <p><strong>الشركة:</strong> كريتيف استوديو</p>
+            <p><strong>الشركة:</strong> كريتف استديو</p>
             <p><strong>الموقع:</strong> أم درمان</p>
-            <p><strong>الراتب:</strong> 250,000 جنيه</p>
-            <button class="btn">قدم الآن</button>
+            <p><strong>الراتب:</strong> 300,000 جنيه</p>
+            <p><strong>الخبرة:</strong> خبرة في Photoshop و Illustrator</p>
+            <button class="btn" onclick="openForm('مصمم جرافيك', 'كريتف استديو')">قدم الآن</button>
         </div>
 
+        <!-- وظيفة 3 -->
         <div class="job-card">
             <h3>محاسب مالي</h3>
-            <p><strong>الشركة:</strong> النيل للتجارة</p>
+            <p><strong>الشركة:</strong> الشركة المتحدة</p>
             <p><strong>الموقع:</strong> بحري</p>
-            <p><strong>الراتب:</strong> 300,000 جنيه</p>
-            <button class="btn">قدم الآن</button>
+            <p><strong>الراتب:</strong> 350,000 جنيه</p>
+            <p><strong>الخبرة:</strong> 3 سنوات + شهادة محاسبة</p>
+            <button class="btn" onclick="openForm('محاسب مالي', 'الشركة المتحدة')">قدم الآن</button>
+        </div>
+
+    </div>
+
+    <!-- فورم التقديم -->
+    <div id="applyForm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999;">
+        <div style="background:white; max-width:400px; margin:50px auto; padding:25px; border-radius:10px; position:relative;">
+            <h3 id="jobTitle" style="color:#2c3e50; margin-bottom:20px;">التقديم على الوظيفة</h3>
+            <input type="text" id="name" placeholder="الاسم الكامل" style="width:100%; padding:12px; margin:8px 0; border:2px solid #ddd; border-radius:6px; font-size:15px;">
+            <input type="email" id="email" placeholder="البريد الإلكتروني" style="width:100%; padding:12px; margin:8px 0; border:2px solid #ddd; border-radius:6px; font-size:15px;">
+            <input type="tel" id="phone" placeholder="رقم الواتساب" style="width:100%; padding:12px; margin:8px 0; border:2px solid #ddd; border-radius:6px; font-size:15px;">
+            <textarea id="message" placeholder="نبذة عنك وخبراتك" style="width:100%; padding:12px; margin:8px 0; border:2px solid #ddd; border-radius:6px; height:90px; font-size:15px; font-family:inherit;"></textarea>
+            <button onclick="submitForm()" style="width:100%; background:#27ae60; color:white; padding:14px; border:none; border-radius:6px; font-size:16px; font-weight:bold; cursor:pointer;">إرسال الطلب</button>
+            <button onclick="closeForm()" style="width:100%; background:#e74c3c; color:white; padding:12px; border:none; border-radius:6px; margin-top:10px; cursor:pointer;">إلغاء</button>
         </div>
     </div>
+
+    <script>
+        // كود تسجيل الدخول والخروج
+        if(localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('loginLink').style.display = 'none';
+            document.getElementById('logoutLink').style.display = 'inline-block';
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+        // كود فورم التقديم
+        let currentJob = '';
+        let currentCompany = '';
+
+        function openForm(job, company) {
+            currentJob = job;
+            currentCompany = company;
+            document.getElementById('jobTitle').innerText = 'التقديم على: ' + job;
+            document.getElementById('applyForm').style.display = 'block';
+            // مسح البيانات القديمة
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('message').value = '';
+        }
+
+        function closeForm() {
+            document.getElementById('applyForm').style.display = 'none';
+        }
+
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            if(!name || !email || !phone) {
+                alert('املأ الاسم والإيميل والواتساب أول');
+                return;
+            }
+            
+            // غيري الرقم دا لرقم الواتساب حقك
+            const yourWhatsApp = '249912345678';
+            
+            const text = `طلب توظيف جديد%0A%0Aالوظيفة: ${currentJob}%0Aالشركة: ${currentCompany}%0A%0Aالاسم: ${name}%0Aالإيميل: ${email}%0Aالواتساب: ${phone}%0A%0Aالنبذة:%0A${message}`;
+            window.open(`https://wa.me/${yourWhatsApp}?text=${text}`, '_blank');
+            
+            alert('تم تجهيز طلبك، ح يفتح الواتساب الآن لإرساله');
+            closeForm();
+        }
+    </script>
 </body>
-                                  </html>
+</html>
